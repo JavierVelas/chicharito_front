@@ -1,0 +1,23 @@
+<header class="main-header">
+  <div class="header-container">
+    <div class="logo-nav-container">
+      <img src="assets/img/kinder.jpg" alt="Logo Kinder" class="site-logo">
+      
+      <div class="logo-text">
+        <h1 class="site-title">Chicharitos Kinder Garden</h1>
+        <p class="site-slogan">Educando con amor y dedicación</p>
+      </div>
+      
+      <nav class="main-navigation">
+       <a (click)="navigateTo('noticias')" [class.active]="router.url === '/noticias'" class="nav-link">Noticias de ultima hora</a>
+        <a (click)="navigateTo('main')" [class.active]="router.url === '/main'" class="nav-link">Inicio</a>
+        <a (click)="navigateTo('map')" [class.active]="router.url === '/map'" class="nav-link">Ubicación y horarios</a>
+        <a (click)="navigateTo('nosotros')" [class.active]="router.url === '/nosotros'" class="nav-link">Conócenos</a>
+        <!-- <a (click)="navigateTo('up')" [class.active]="router.url === '/up'" class="nav-link">Prueba de imagen</a> -->
+        <!-- <a (click)="navigateTo('login')" [class.active]="router.url === '/login'" class="nav-link">Inicio de sesión</a> -->
+        <button (click)="cerrarSesion()" class="nav-link">Cerrar sesión</button>
+
+      </nav>
+    </div>
+  </div>
+</header>

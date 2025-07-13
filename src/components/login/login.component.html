@@ -1,0 +1,46 @@
+<canvas id="background-circles"></canvas>
+
+<div *ngIf="!mostrarLogin" class="welcome-buttons">
+  <button #botonMaestra (click)="mostrarFormularioLogin()" class="btn-main">Ingresar como maestra</button>
+  <button #botonInvitado (click)="ingresarComoInvitado()" class="btn-main">Ingresar como invitado</button>
+</div>
+
+<div *ngIf="mostrarLogin" class="caja1" #formularioLogin>
+  <button class="close-button" (click)="mostrarLogin = false">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M18 6L6 18M6 6l12 12"></path>
+    </svg>
+  </button>
+  
+  <div class="formtlo">Iniciar Sesión</div>
+  <form (ngSubmit)="login()" autocomplete="off">
+    <div class="ub1">Usuario</div>
+    <input
+      type="text"
+      [(ngModel)]="usuario"
+      name="usuario"
+      placeholder="Usuario"
+      required
+    />
+
+    <div class="ub1">Clave</div>
+    <div class="password-container">
+      <input
+        [type]="mostrarClave ? 'text' : 'password'"
+        [(ngModel)]="clave"
+        name="clave"
+        placeholder="Contraseña"
+        required
+        class="password-input"
+      />
+     
+    </div>
+
+    <div class="form-actions">
+      <input type="submit" value="Entrar" />
+      <input type="reset" value="Limpiar" />
+    </div>
+    <div *ngIf="mensaje" class="message">{{ mensaje }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+  </form>
+</div>

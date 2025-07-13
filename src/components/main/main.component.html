@@ -1,0 +1,91 @@
+<div class="hero">
+  <h1>Bienvenidos al Kinder Chicharitos Garden</h1>
+  <p>Un lugar donde tus pequeños crecen felices, seguros y aprendiendo cada día.</p>
+
+</div>
+
+<div class="slider-container">
+  <div class="slider-track" [style.transform]="'translateX(' + (-currentSlide * 100) + '%)'">
+    <div class="slide" *ngFor="let slide of slides">
+      <img [src]="slide" alt="Slide">
+    </div>
+  </div>
+  
+ 
+  
+  <div class="indicators">
+    <span *ngFor="let slide of slides; let i = index" 
+          [class.active]="i === currentSlide"
+          (click)="goToSlide(i)"></span>
+  </div>
+</div>
+
+<div class="beneficios">
+  <h2>¿Por qué elegirnos?</h2>
+  <ul>
+    <li>Personal calificado y amoroso</li>
+    <li>Instalaciones seguras y modernas</li>
+    <li>Enfoque en la creatividad</li>
+    <li>Alimentación saludable</li>
+  </ul>
+</div>
+
+
+<div class="contacto">
+  <p>Contáctenos para más información sobre los informes</p>
+  
+  <br> <!-- Salto de línea -->
+  
+  <p>📞 499 916 1706</p>
+  
+  <br> <!-- Salto de línea -->
+  
+  <p>📞 449 634 5288</p>
+  
+  <br> <!-- Salto de línea -->
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <p>
+    <a href="https://www.facebook.com/kinderchicharitos?mibextid=wwXIfr&rdid=oIIHHuUz57c3R911&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F19q6SwkXbq%2F%3Fmibextid%3DwwXIfr#" 
+    target="_blank" style="text-decoration: none;">
+      Síganos en <i class="fab fa-facebook-f" style="color: #1877f2; font-size: 1.2em;"></i>acebook
+    </a>
+  </p>
+  
+  <br> <!-- Salto de línea -->
+  
+  <p>
+    <a href="https://www.instagram.com/chicharitosurkindergarten/" class="btn-instagram" target="_blank" style="text-decoration: none;">
+      <i class="fab fa-instagram"></i> Síguenos por Instagram
+    </a>
+  </p>
+  
+  <br> <!-- Salto de línea -->
+  
+  <p>Nuestro correo electrónico:</p>
+  
+  <p>
+    <a href="mailto:chicharitos01@hotmail.com" class="correo" style="text-decoration: none;">
+      <i class="fas fa-envelope"></i> chicharitos01@hotmail.com
+    </a>
+  </p>
+</div>
+
+<style>
+  .contacto {
+    line-height: 1.8; /* Espaciado entre líneas */
+  }
+  
+  .btn-instagram {
+    background: linear-gradient(45deg, #405DE6, #833AB4, #C13584, #E1306C, #FD1D1D);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-block;
+  }
+  
+  .correo {
+    color: #d44638;
+  }
+</style>

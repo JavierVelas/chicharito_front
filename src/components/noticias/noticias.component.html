@@ -1,0 +1,104 @@
+<div class="titulo">
+  <h1>Manténgase al corriente de las novedades del kinder</h1>
+</div>
+
+<!-- Botón para agregar nueva noticia -->
+<div class="acciones-global" *ngIf="authService.isAuthenticated() && !authService.isInvitado()">
+  <button class="btn btn-primary" (click)="abrirFormularioNuevaNoticia()">Agregar Noticia</button>
+</div>
+
+<div *ngIf="noticias?.length === 0" class="sin-noticias">
+  <p>No hay noticias disponibles por el momento.</p>
+</div>
+
+<div *ngFor="let noticia of noticias" class="noticia-card">
+  <h2>{{ noticia.titulo }}</h2>
+  <p>{{ noticia.info }}</p>
+  
+  <!-- Mostrar imagen si existe -->
+  <div *ngIf="noticia.url_imagen" class="imagen-noticia">
+    <img [src]="noticia.url_imagen" 
+         class="noticia-img" 
+         alt="Imagen de noticia"
+         onerror="this.style.display='none'">
+  </div>
+  
+  <small>Fecha de publicación: {{ noticia.fecha | date:'medium' }}</small>
+  
+  <!-- Botones de acciones -->
+  <div class="acciones" *ngIf="authService.isAuthenticated() && !authService.isInvitado()">
+    <button class="btn btn-secondary" (click)="editarNoticia(noticia)">Editar</button>
+    <button class="btn btn-danger" (click)="borrarNoticia(noticia.info_id)">Eliminar</button>
+  </div>
+  
+  <hr>
+</div>
+
+<!-- Formulario de noticias -->
+<div *ngIf="mostrarFormulario" class="modal-form">
+  <form (ngSubmit)="guardarNoticia()" #noticiaForm="ngForm">
+    <h3>{{ noticiaEditando ? 'Editar noticia' : 'Nueva noticia' }}</h3>
+    
+    <div class="form-group">
+      <label>Título:</label>
+      <input [(ngModel)]="nuevaNoticia.titulo" name="titulo" required class="form-control">
+    </div>
+    
+    <div class="form-group">
+      <label>Información:</label>
+      <textarea [(ngModel)]="nuevaNoticia.info" name="info" required class="form-control" rows="5"></textarea>
+    </div>
+    
+    <div class="form-group">
+      <label>Imagen:</label>
+      <input type="file" (change)="onFileSelected($event)" accept="image/*" class="form-control">
+      <small class="text-muted">Formatos aceptados: JPEG, PNG, GIF, WEBP (Máx. 5MB)</small>
+      
+      <!-- Vista previa de la imagen -->
+      <div *ngIf="archivoParaSubir" class="vista-previa mt-2">
+        <img [src]="obtenerVistaPrevia()" class="img-thumbnail" style="max-height: 150px;">
+        <button type="button" class="btn btn-sm btn-danger ml-2" (click)="archivoParaSubir = null">
+          Eliminar
+        </button>
+      </div>
+      
+      <!-- Mostrar imagen actual si estamos editando -->
+      <div *ngIf="noticiaEditando && nuevaNoticia.url_imagen && !archivoParaSubir" class="mt-2">
+        <p>Imagen actual:</p>
+        <img [src]="nuevaNoticia.url_imagen" class="img-thumbnail" style="max-height: 150px;">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label>Fecha de publicación:</label>
+      <div class="fecha-inputs row">
+        <div class="col">
+          <label>Día</label>
+          <input type="number" [(ngModel)]="fechaNoticia.dia" name="dia" 
+                 min="1" max="31" placeholder="DD" class="form-control" required>
+        </div>
+        <div class="col">
+          <label>Mes</label>
+          <input type="number" [(ngModel)]="fechaNoticia.mes" name="mes" 
+                 min="1" max="12" placeholder="MM" class="form-control" required>
+        </div>
+        <div class="col">
+          <label>Año</label>
+          <input type="number" [(ngModel)]="fechaNoticia.anio" name="anio" 
+                 [min]="1900" [max]="currentYear" 
+                 placeholder="AAAA" class="form-control" required>
+        </div>
+      </div>
+    </div>
+    
+    <div class="form-acciones mt-3">
+      <button type="submit" class="btn btn-success" [disabled]="subiendoImagen">
+        <span *ngIf="subiendoImagen" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        {{ noticiaEditando ? 'Actualizar' : 'Crear' }}
+      </button>
+      <button type="button" class="btn btn-secondary ml-2" (click)="cerrarFormulario()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</div>

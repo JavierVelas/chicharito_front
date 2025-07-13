@@ -1,0 +1,243 @@
+.slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  height: 600px;
+  margin: 30px auto 0 auto;
+  overflow: hidden;
+  border-radius: 24px;
+  
+  box-shadow: 0 8px 24px rgba(255,179,71,0.2);
+  background: linear-gradient(135deg, #fffbe6 0%, #ffe5ec 100%);
+}
+
+/* Pista del slider */
+.slider-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(.77,0,.18,1);
+  height: 100%;
+}
+
+.slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;         
+  justify-content: center;
+  background: #fffbe6;
+  box-shadow: 0 2px 12px rgba(255,179,71,0.10); 
+  padding: 0; /* Sin padding para aprovechar todo el espacio */
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;    /* Cambiado a cover para llenar todo el slide */
+  border-radius: 12px;
+  /* background: #fff;   Puedes quitar esta línea si quieres */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Botones de navegación */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #ffb347 60%, #ffcc80 100%);
+  color: #fff;
+  border: none;
+  padding: 13px 18px;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 10;
+  font-size: 22px;
+  box-shadow: 0 2px 8px rgba(255,179,71,0.18);
+  transition: background 0.3s;
+}
+.slider-btn:hover {
+  background: linear-gradient(135deg, #ffd700 60%, #ffc107 100%);
+  color: #fff8e1;
+}
+
+/* Indicadores (puntos) */
+.indicators {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 20;
+}
+.indicators span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  background: #ffd699;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ffe5ec;
+  transition: background .2s, transform .2s;
+}
+.indicators span.active {
+  background: #ffb347;
+  transform: scale(1.2);
+  border-color: #ffb347;
+}
+
+/* Responsive (para móviles) */
+@media (max-width: 600px) {
+  .slider-container {
+    max-width: 98vw;
+    height: 220px;
+    border-radius: 16px;
+  }
+  .indicators {
+    bottom: 12px;
+    gap: 8px;
+  }
+  .indicators span {
+    width: 10px;
+    height: 10px;
+  }
+  .slider-btn {
+    padding: 7px 11px;
+    font-size: 16px;
+  }
+}
+
+body {
+  font-family: 'Montserrat', Arial, sans-serif;
+  background: linear-gradient(135deg, #fffbe6 0%, #ffe5ec 100%);
+  margin: 0;
+  padding: 0;
+  color: #624a2e;
+}
+
+/* Hero section */
+.hero {
+  background: linear-gradient(90deg, #ffe082 40%, #ffb347 100%);
+  padding: 50px 20px 30px 20px;
+  text-align: center;
+  border-radius: 0 0 32px 32px;
+  box-shadow: 0 4px 20px #ffb34722;
+  margin-bottom: 28px;
+}
+
+.hero h1 {
+  color: #b46b00;
+  font-size: 2.5rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #8b5e1a;
+  margin-top: 0;
+}
+
+/* --- ¿Por qué elegirnos? --- */
+.beneficios h2 {
+  color: #4a8f29; 
+  margin: 90px 0 18px 0; 
+  font-size: 1.7rem;
+  text-align: center;
+  font-family: 'Comic Sans MS', cursive, sans-serif; 
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.beneficios ul {
+  list-style: none;
+  padding: 0;
+}
+
+.beneficios li {
+  background: #f0f8d1;
+  margin-bottom: 10px;
+  padding: 12px 18px;
+  border-radius: 12px;
+  color: #5a6e3a;
+  font-size: 1.08rem;
+  box-shadow: 0 2px 6px rgba(146, 176, 76, 0.1);
+  transition: all 0.3s ease;
+  border-left: 4px solid #ffd700;
+  max-width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify; /* Justifica el texto */
+  text-align-last: center; /* Centra la última línea (opcional) */
+  hyphens: auto; /* Divide palabras con guiones si es necesario (para mejor ajuste) */
+}
+.beneficios li:hover {
+  background: #e6f5b3; 
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 8px rgba(146, 176, 76, 0.2);
+}
+
+/* --- Contacto --- */
+.contacto {
+  background: #f0f8d1; 
+  border-radius: 18px;
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 22px 18px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(146, 176, 76, 0.15);
+  border: 2px dashed #4a8f29;
+}
+
+.contacto p {
+  margin: 10px 0;
+  color: #000000; 
+  font-size: 1.08rem;
+}
+
+.contacto a {
+  color: #000000; 
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contacto button {
+  margin-top: 12px;
+  padding: 12px 32px;
+  font-size: 1.1rem;
+  background: linear-gradient(90deg, #ffd700 40%, #f1c40f 100%); 
+  border: none;
+  border-radius: 24px;
+  color: #5a6e3a; 
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 215, 0, 0.3);
+  font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.contacto button:hover {
+  background: linear-gradient(90deg, #f1c40f 40%, #ffd700 100%);
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(255, 215, 0, 0.4);
+}
+
+/* --- Ícono de Facebook (extra) --- */
+.contacto .fa-facebook {
+  color: #4a8f29; /* Verde en lugar del azul tradicional */
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+
+/* Responsive */
+@media(max-width: 650px) {
+  .beneficios, .testimonios, .contacto {
+    max-width: 97vw;
+    padding: 18px 6vw;
+  }
+  .hero {
+    padding: 30px 10px 16px 10px;
+  }
+  .hero h1 { font-size: 1.6rem; }
+  .beneficios h2 { font-size: 1.15rem; }
+}
