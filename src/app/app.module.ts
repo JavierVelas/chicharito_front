@@ -11,8 +11,7 @@ import { LoginComponent } from 'src/components/login/login.component';
 
 import { HeaderComponent } from 'src/components/header/header.component';
 import { MapComponent } from 'src/components/map/map.component';
-import { UpComponent } from 'src/components/up/up.component';
-import { ErrorComponent } from 'src/components/error/error.component';
+
 import { RouterModule } from '@angular/router';
 
 
@@ -32,9 +31,9 @@ import { DataService } from 'src/services/data.service';
     HeaderComponent,
     MapComponent,
     SafeUrlPipe, 
-    UpComponent,
   
-    ErrorComponent
+  
+   
   ],
   imports: [
     BrowserModule,
