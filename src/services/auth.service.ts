@@ -35,6 +35,8 @@ export class AuthService {
       );
   }
 
+  
+
   ingresarComoInvitado() {
     localStorage.removeItem('token');
     localStorage.setItem('invitado', 'true');

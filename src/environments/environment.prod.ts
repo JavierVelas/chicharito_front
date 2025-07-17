@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://api.tuapp.com'  // Ejemplo
+  apiUrl: 'https://chicharitos-web.onrender.com'  // Ejemplo
 };
