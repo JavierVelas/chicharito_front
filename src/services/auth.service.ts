@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { tap } from 'rxjs/operators';
+import { environment } from '../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private authSubject = new BehaviorSubject<boolean>(this.hasToken());
   isAuthenticated$ = this.authSubject.asObservable();
-  private apiUrl = 'http://localhost:3000/api/auth';
+  private apiUrl = 'https://chicharito-back.onrender.com/api/auth';
 
   // Almacena los datos del usuario autenticado (opcional)
   private userData: any = null;
