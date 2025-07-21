@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://chicharitos-web.onrender.com'  // Ejemplo
+  apiUrl: 'https://chicharito-back.onrender.com'  // Ejemplo
 };
