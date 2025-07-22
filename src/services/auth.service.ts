@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
 export class AuthService {
   private authSubject = new BehaviorSubject<boolean>(this.hasToken());
   isAuthenticated$ = this.authSubject.asObservable();
-  private apiUrl = 'https://chicharito-back.onrender.com/api/auth';
+  private apiUrl = '${environment.apiUrl}/auth';
 
   // Almacena los datos del usuario autenticado (opcional)
   private userData: any = null;
