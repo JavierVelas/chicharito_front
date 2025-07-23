@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataService {
-  private apiUrl = 'http://localhost:3000/api/auth'; 
+  private apiUrl = '${environment.apiUrl}/noticias'; 
 
   constructor(private http: HttpClient) {}
 
