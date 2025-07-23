@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://chicharito-back.onrender.com/api' 
+  apiUrl: 'http://localhost:3000/api' // Para desarrollo local
 };
