@@ -36,13 +36,16 @@ export class LoginComponent implements AfterViewInit, OnDestroy {
     this.mostrarLogin = true;
   }
 
+
+
 login() {
   this.errorMessage = '';
 
   this.authService.login(this.usuario, this.clave).subscribe({
     next: (res) => {
       // Guardar el usuario completo (con rol, etc.) en localStorage
-      localStorage.setItem('usuarios', JSON.stringify(res.user));
+      console.log(res)
+      localStorage.setItem('usuarios', JSON.stringify(res));
 
       // Redirigir al home o panel principal
       this.router.navigate(['/main']);
