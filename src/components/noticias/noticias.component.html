@@ -3,7 +3,7 @@
 </div>
 
 <!-- Botón para agregar nueva noticia -->
-<div class="acciones-global" *ngIf="authService.isAuthenticated() && !authService.isInvitado()">
+<div class="acciones-global" *ngIf="authService.isAuthenticated() && !authService.isGuest()">
   <button class="btn btn-primary" (click)="abrirFormularioNuevaNoticia()">Agregar Noticia</button>
 </div>
 
@@ -26,7 +26,7 @@
   <small>Fecha de publicación: {{ noticia.fecha | date:'medium' }}</small>
   
   <!-- Botones de acciones -->
-  <div class="acciones" *ngIf="authService.isAuthenticated() && !authService.isInvitado()">
+  <div class="acciones" *ngIf="authService.isAuthenticated() && !authService.isGuest()">
     <button class="btn btn-secondary" (click)="editarNoticia(noticia)">Editar</button>
     <button class="btn btn-danger" (click)="borrarNoticia(noticia.info_id)">Eliminar</button>
   </div>
