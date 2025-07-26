@@ -22,10 +22,12 @@ export class NoticiasService {
     return this.http.post(`${this.apiUrl}/create`, noticia);
   }
 
-  updateNoticia(id: number, noticia: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update/${id}`, noticia);
+updateNoticia(id: number, noticia: any): Observable<any> {
+  if (id === undefined || id === null) {
+    throw new Error('El ID de la noticia es inválido');
   }
-
+  return this.http.put(`${this.apiUrl}/update/${id}`, noticia);
+}
   deleteNoticia(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/delete/${id}`);
   }
