@@ -138,17 +138,18 @@ export class NoticiasComponent implements OnInit {
     }
   }
 
-  async guardarNoticia() {
-    if (!this.nuevaNoticia.titulo || !this.nuevaNoticia.info) {
-      alert('Título e información son campos obligatorios');
-      return;
-    }
+ async guardarNoticia() {
+  if (!this.nuevaNoticia.titulo || !this.nuevaNoticia.info) {
+    alert('Título e información son campos obligatorios');
+    return;
+  }
 
-    try {
-      // Subir imagen si hay un archivo seleccionado
-      if (this.archivoParaSubir) {
-        this.nuevaNoticia.url_imagen = await this.subirImagen();
-      }
+  try {
+    // Subir imagen si hay archivo
+    if (this.archivoParaSubir) {
+      const resp = await this.noticiasService.subirImagenImgBB(this.archivoParaSubir).toPromise();
+      this.nuevaNoticia.url_imagen = resp.data.url; // ImgBB devuelve la URL en resp.data.url
+    }
 
       // Formatear fecha
       if (this.fechaNoticia.dia && this.fechaNoticia.mes && this.fechaNoticia.anio) {
@@ -160,6 +161,13 @@ export class NoticiasComponent implements OnInit {
       } else {
         this.nuevaNoticia.fecha = new Date().toISOString().slice(0, 19).replace('T', ' ');
       }
+
+       // Guarda la noticia (create o update)
+    if (this.noticiaEditando) {
+      await this.noticiasService.updateNoticia(this.nuevaNoticia.id, this.nuevaNoticia).toPromise();
+    } else {
+      await this.noticiasService.createNoticia(this.nuevaNoticia).toPromise();
+    }
 
       // Obtener ID de usuario
       const usuario = JSON.parse(localStorage.getItem('usuarios') || 'null');

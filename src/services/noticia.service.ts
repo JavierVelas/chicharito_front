@@ -10,7 +10,13 @@ export class NoticiasService {
 
   constructor(private http: HttpClient) {}
 
-
+    subirImagenImgBB(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('image', file); // ImgBB espera "image"
+    // Pega tu api_key aquí
+    const apiKey = '8d3a9e63deaf48a38ece2237bbb5fb87';
+    return this.http.post(`https://api.imgbb.com/1/upload?key=${apiKey}`, formData);
+  }
   
 
   getNoticias(): Observable<any[]> {
