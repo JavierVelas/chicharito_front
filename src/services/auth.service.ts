@@ -96,9 +96,11 @@ export class AuthService {
     return this.authSubject.value;
   }
 
-  canEdit(): boolean {
-    return this.userSubject.value?.puede_editar || false;
-  }
+canEdit(): boolean {
+  const user = this.userSubject.value;
+  // Si es invitado (isGuest) o no tiene permisos (puede_editar=false), retorna false
+  return !this.isGuest() && (user?.puede_editar === true);
+}
 
   isGuest(): boolean {
     return localStorage.getItem('isGuest') === 'true';

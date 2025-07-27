@@ -26,10 +26,10 @@
   <small>Fecha de publicación: {{ noticia.fecha | date:'medium' }}</small>
   
   <!-- Botones de acciones -->
-  <div class="acciones" *ngIf="authService.isAuthenticated() && !authService.isGuest()">
-    <button class="btn btn-secondary" (click)="editarNoticia(noticia)">Editar</button>
-    <button class="btn btn-danger" (click)="borrarNoticia(noticia.id)">Eliminar</button>
-  </div>
+  <div class="acciones" *ngIf="authService.canEdit()">
+  <button class="btn btn-secondary" (click)="editarNoticia(noticia)">Editar</button>
+  <button class="btn btn-danger" (click)="borrarNoticia(noticia.id)">Eliminar</button>
+</div>
   
   <hr>
 </div>
