@@ -28,7 +28,7 @@
   <!-- Botones de acciones -->
   <div class="acciones" *ngIf="authService.isAuthenticated() && !authService.isGuest()">
     <button class="btn btn-secondary" (click)="editarNoticia(noticia)">Editar</button>
-    <button class="btn btn-danger" (click)="borrarNoticia(noticia.info_id)">Eliminar</button>
+    <button class="btn btn-danger" (click)="borrarNoticia(noticia.id)">Eliminar</button>
   </div>
   
   <hr>

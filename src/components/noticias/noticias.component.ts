@@ -73,7 +73,7 @@ export class NoticiasComponent implements OnInit {
   editarNoticia(noticia: any) {
     this.nuevaNoticia = { 
       ...noticia, 
-      id: noticia.info_id
+      id: noticia.id
     };
     this.archivoParaSubir = null;
     
