@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
+import { Router } from '@angular/router';
 
 interface User {
   usuario: string;
@@ -19,7 +20,7 @@ export class AuthService {
   
   private readonly apiUrl = `${environment.apiUrl}/auth`;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.initializeAuthState();
   }
 
@@ -81,6 +82,8 @@ export class AuthService {
     localStorage.setItem('userData', JSON.stringify(guestUser));
     localStorage.setItem('isGuest', 'true');
     this.authSubject.next(false);
+    
+    this.router.navigate(['/main']); // Redirige a /main
   }
 
   logout(): void {
