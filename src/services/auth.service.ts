@@ -78,12 +78,23 @@ export class AuthService {
       puede_editar: false
     };
     
+    this.clearAuthData();
+
     this.userSubject.next(guestUser);
     localStorage.setItem('userData', JSON.stringify(guestUser));
     localStorage.setItem('isGuest', 'true');
     this.authSubject.next(false);
     
-    this.router.navigate(['/main']); // Redirige a /main
+     this.router.navigate(['/main'])
+    .then(success => {
+      if (!success) {
+        window.location.href = '/main'; // Fallback absoluto
+      }
+    })
+     .catch(err => {
+      console.error('Error de navegación:', err);
+      window.location.href = '/main';
+    });
   }
 
   logout(): void {

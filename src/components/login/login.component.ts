@@ -57,10 +57,18 @@ login() {
 }
 
 
-  ingresarComoInvitado() { 
-    this.mensaje = 'Ingresaste como invitad@';
-    this.router.navigate(['/main']);
-  }
+ingresarComoInvitado() {
+  console.log('Intentando ingresar como invitado...');
+  this.authService.ingresarComoInvitado();
+  
+  // Opcional: verificar estado después de 1 segundo
+  setTimeout(() => {
+    console.log('Estado después de ingresar:',
+      'Autenticado:', this.authService.isAuthenticated(),
+      'Invitado:', this.authService.isGuest(),
+      'Puede editar:', this.authService.canEdit());
+  }, 1000);
+}
 
   // --- ANIMACIÓN DE CÍRCULOS ---
   ngAfterViewInit() {
