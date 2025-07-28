@@ -107,12 +107,16 @@ export class AuthService {
     return this.authSubject.value;
   }
 
-// auth.service.ts
 canEdit(): boolean {
-  // Usuario autenticado (no invitado) con permiso explícito
-  return this.isAuthenticated() && 
-         !this.isGuest() && 
-         this.userSubject.value?.puede_editar === true;
+  const user = this.userSubject.value;
+  if (!user) return false;
+
+  // Convierte a booleano (soporta 1/0 o true/false de PostgreSQL)
+  const tienePermiso = typeof user.puede_editar === 'number' 
+    ? user.puede_editar === 1 
+    : user.puede_editar === true;
+
+  return this.isAuthenticated() && tienePermiso;
 }
 
 isRegularUser(): boolean {
