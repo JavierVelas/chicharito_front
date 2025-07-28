@@ -107,10 +107,17 @@ export class AuthService {
     return this.authSubject.value;
   }
 
+// auth.service.ts
 canEdit(): boolean {
-  const user = this.userSubject.value;
-  // Si es invitado (isGuest) o no tiene permisos (puede_editar=false), retorna false
-  return !this.isGuest() && (user?.puede_editar === true);
+  // Usuario autenticado (no invitado) con permiso explícito
+  return this.isAuthenticated() && 
+         !this.isGuest() && 
+         this.userSubject.value?.puede_editar === true;
+}
+
+isRegularUser(): boolean {
+  // Usuario normal (no invitado, autenticado)
+  return this.isAuthenticated() && !this.isGuest();
 }
 
   isGuest(): boolean {
