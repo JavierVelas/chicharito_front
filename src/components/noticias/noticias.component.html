@@ -26,7 +26,7 @@
   <small>Fecha de publicación: {{ noticia.fecha | date:'medium' }}</small>
   
   <!-- Botones de acciones -->
-<div *ngIf="authService.canEdit()">
+<div *ngIf="authService.isAuthenticated() && !authService.isGuest()">
    <button class="btn btn-secondary" (click)="editarNoticia(noticia)">Editar</button>
   <button class="btn btn-danger" (click)="borrarNoticia(noticia.id)">Eliminar</button>
 </div>
